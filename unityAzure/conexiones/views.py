@@ -90,15 +90,14 @@ def cambio(request):
 
     user_id = body['id']
     username = body['username']
-    comment = body['comment']
 
     mydb = sqlite3.connect("tarea_U_DJ.db")
     cur = mydb.cursor()
 
-    stringSQL = '''UPDATE Usuario SET username = ?, comment = ?
+    stringSQL = '''UPDATE Usuario SET username = ?
     WHERE Usuario.id = ?'''
 
-    rows = cur.execute(stringSQL, (username, comment, user_id))
+    rows = cur.execute(stringSQL, (username, user_id))
     mydb.commit()
 
     if rows is None:
